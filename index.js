@@ -2,12 +2,18 @@ const config = require('../config'),
       express = require('express'),
       bodyParser = require('body-parser'),
       app = express(),
-      db = require('./db_controller'),
-      validator = require('./validation')
+      routes = require('./routes')
       
 app.use(bodyParser.urlencoded({ extended: false }))
 
-require('./routes')(app, db, validator)
+app.route('/currencies')
+    .get(routes.getCurrencies)
+
+app.route('/order')
+    .get(routes.getOrders)
+    .put(routes.updateOrder)
+    .post(routes.addOrder)
+    .delete(routes.deleteOrder)
 
 app.listen(config.apiport, () => {
     console.log(`API server listening on port ${config.apiport}`)

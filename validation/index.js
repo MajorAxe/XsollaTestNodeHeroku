@@ -12,6 +12,7 @@ module.exports = {
     cvv,
     forUpdate,
     forAdd,
+    name,
     messages
 }
 
@@ -82,6 +83,15 @@ function cvv(cvv) {
 }
 
 /**
+ * Валидация имени владельца карты
+ * @param name Имя
+ * @returns {boolean}
+ */
+function name(name) {
+    return name && patterns.name.test(name)
+}
+
+/**
  * Валидация для метода update, проверяет все поля заказа, при этом допускает null и undefined для всех, кроме номера заказа
  * @param orderNumber Номер заказа
  * @param price Цена
@@ -91,7 +101,7 @@ function cvv(cvv) {
  * @param cvv
  * @returns {{valid: boolean, validationErr: <Array>}} valid - пройден ли тест, validationErr - сообщения об ошибке
  */
-function forUpdate(orderNumber, price, currency, cardNumber, expiration, cvv) {
+function forUpdate(orderNumber, price, currency, cardNumber, expiration, cvv, name) {
     let valid = true,
         validationErr = []
     if (!this.orderNumber(orderNumber)) {
@@ -135,7 +145,7 @@ function forUpdate(orderNumber, price, currency, cardNumber, expiration, cvv) {
  * @param cvv
  * @returns {{valid: boolean, validationErr: <Array>}} valid - пройден ли тест, validationErr - сообщения об ошибке
  */
-function forAdd(orderNumber, price, currency, cardNumber, expiration, cvv) {
+function forAdd(orderNumber, price, currency, cardNumber, expiration, cvv, name) {
     let valid = true,
         validationErr = []
     if (!this.orderNumber(orderNumber)) {

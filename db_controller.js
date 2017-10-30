@@ -32,7 +32,7 @@ async function getAllCurrencyNames() {
  */
 async function getAllOrders() {
     try {
-        return await db.any('SELECT time, order_number, price, currencies.name AS currency, card_number, expiration, cvv FROM orders LEFT JOIN currencies ON orders.currency = currencies.id')
+        return await db.any('SELECT time, order_number, price, currencies.name AS currency, card_number, expiration, cvv, name FROM orders LEFT JOIN currencies ON orders.currency = currencies.id')
     }
     catch(e) {
         console.error('DB error in getAllOrders:', e)
@@ -64,12 +64,13 @@ async function orderExists(number) {
  * @param card_number Номер карты
  * @param expiration Expiration date карты
  * @param cvv CVV карты
+ * @param name Имя владельца
  * @returns {Promise.<boolean>} true если был обновлен ровно один заказ, false в ином случае
  */
-async function updateOrder(order_number, price, currency, card_number, expiration, cvv) {
+async function updateOrder(order_number, price, currency, card_number, expiration, cvv, name) {
     try {
         const currencyCode = await db.one('SELECT id FROM currencies WHERE name = $1', [currency])
-        const updatedRows = await db.any('UPDATE orders SET price = COALESCE($1, price), currency = COALESCE($2, currency), card_number = COALESCE($3, card_number), expiration = COALESCE($4, expiration), cvv = COALESCE($5, cvv) WHERE order_number = $6 RETURNING order_number', [price, currencyCode.id, card_number, expiration, cvv, order_number])
+        const updatedRows = await db.any('UPDATE orders SET price = COALESCE($1, price), currency = COALESCE($2, currency), card_number = COALESCE($3, card_number), expiration = COALESCE($4, expiration), cvv = COALESCE($5, cvv), name = COALESCE($6, name) WHERE order_number = $7 RETURNING order_number', [price, currencyCode.id, card_number, expiration, cvv, name, order_number])
         return updatedRows.length === 1
     }
     catch(e) {
@@ -102,12 +103,13 @@ async function deleteOrder(order_number) {
  * @param card_number Номер карты
  * @param expiration Expiration date карты
  * @param cvv CVV карты
+ * @param name Имя владельца
  * @returns {Promise.<boolean>} true если был добавлен ровно один заказ, false в ином случае
  */
-async function addOrder(order_number, price, currency, card_number, expiration, cvv) {
+async function addOrder(order_number, price, currency, card_number, expiration, cvv, name) {
     try {
         const currencyCode = await db.one('SELECT id FROM currencies WHERE name = $1', [currency])
-        const insertedRows = await db.any('INSERT INTO orders (order_number, price, currency, card_number, expiration, cvv) VALUES ($1, $2, $3, $4, $5, $6) RETURNING order_number', [order_number, price, currencyCode.id, card_number, expiration, cvv])
+        const insertedRows = await db.any('INSERT INTO orders (order_number, price, currency, card_number, expiration, cvv, name) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING order_number', [order_number, price, currencyCode.id, card_number, expiration, cvv, name])
         return insertedRows.length === 1
     }
     catch(e) {
