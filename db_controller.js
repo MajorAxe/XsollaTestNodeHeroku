@@ -32,7 +32,7 @@ async function getAllCurrencyNames() {
  */
 async function getAllOrders() {
     try {
-        return await db.any('SELECT time, order_number, price, currencies.name AS currency, card_number, expiration, cvv, name FROM orders LEFT JOIN currencies ON orders.currency = currencies.id')
+        return await db.any('SELECT time, order_number, price, currencies.name AS currency, card_number, expiration, cvv, orders.name AS name FROM orders LEFT JOIN currencies ON orders.currency = currencies.id')
     }
     catch(e) {
         console.error('DB error in getAllOrders:', e)

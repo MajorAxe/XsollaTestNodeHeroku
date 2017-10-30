@@ -18,3 +18,5 @@ app.route('/order')
 app.listen(config.apiport, () => {
     console.log(`API server listening on port ${config.apiport}`)
 })
+
+module.exports = app //Для тестов
