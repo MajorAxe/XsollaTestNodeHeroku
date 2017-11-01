@@ -1,4 +1,4 @@
-const config = require('../config'),
+const apiport = process.env.PORT || require('../config').apiport,
       express = require('express'),
       bodyParser = require('body-parser'),
       app = express(),
@@ -15,8 +15,8 @@ app.route('/order')
     .post(routes.addOrder)
     .delete(routes.deleteOrder)
 
-app.listen(config.apiport, () => {
-    console.log(`API server listening on port ${config.apiport}`)
+app.listen(apiport, () => {
+    console.log(`API server listening on port ${apiport}`)
 })
 
 module.exports = app //Для тестов

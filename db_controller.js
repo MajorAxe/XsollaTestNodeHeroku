@@ -1,6 +1,6 @@
 const config = require('../config').db,
     pgp = require('pg-promise')(),
-    db = pgp(config)
+    db = pgp(process.env.DATABASE_URL || config)
 
 module.exports = {
     getAllCurrencyNames,
