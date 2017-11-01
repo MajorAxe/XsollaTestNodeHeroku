@@ -1,4 +1,4 @@
-const apiport = process.env.PORT || require('../config').apiport,
+const apiport = process.env.PORT || require('./config').apiport,
       express = require('express'),
       bodyParser = require('body-parser'),
       app = express(),

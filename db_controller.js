@@ -1,4 +1,4 @@
-const config = require('../config').db,
+const config = require('./config').dbtest,
     pgp = require('pg-promise')(),
     db = pgp(process.env.DATABASE_URL ? process.env.DATABASE_URL + '?ssl=true' : config)
 
