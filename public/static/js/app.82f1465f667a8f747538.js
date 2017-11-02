@@ -370,7 +370,7 @@ module.exports = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('el-form',{ref:"form",staticClass:"fixed-width",attrs:{"model":_vm.form,"rules":_vm.rules,"label-width":"125px"}},[_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":8}},[_c('el-form-item',{attrs:{"label":"Номер заказа","required":true,"prop":"orderNumber"}},[_c('el-input-number',{attrs:{"min":1,"controls":false},model:{value:(_vm.form.orderNumber),callback:function ($$v) {_vm.$set(_vm.form, "orderNumber", $$v)},expression:"form.orderNumber"}})],1)],1),_c('el-col',{attrs:{"md":16}},[_c('el-form-item',{attrs:{"label":"Цена","prop":"price"}},[_c('el-input',{staticClass:"input-with-select",attrs:{"type":"text"},model:{value:(_vm.form.price),callback:function ($$v) {_vm.$set(_vm.form, "price", $$v)},expression:"form.price"}},[_c('el-select',{attrs:{"slot":"append"},slot:"append",model:{value:(_vm.form.currency),callback:function ($$v) {_vm.$set(_vm.form, "currency", $$v)},expression:"form.currency"}},_vm._l((_vm.currencies),function(curr){return _c('el-option',{key:curr,attrs:{"value":curr}})}))],1)],1)],1)],1),_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":24}},[_c('el-form-item',{attrs:{"label":"Номер карты","prop":"cardNumber"}},[_c('el-input',{attrs:{"type":"text","prefix-icon":"el-icon-tickets"},model:{value:(_vm.form.cardNumber),callback:function ($$v) {_vm.$set(_vm.form, "cardNumber", $$v)},expression:"form.cardNumber"}})],1)],1)],1),_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":24}},[_c('el-form-item',{attrs:{"label":"Имя владельца","prop":"name"}},[_c('el-input',{attrs:{"type":"text","prefix-icon":"el-icon-view"},model:{value:(_vm.form.name),callback:function ($$v) {_vm.$set(_vm.form, "name", $$v)},expression:"form.name"}})],1)],1)],1),_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":12}},[_c('el-form-item',{attrs:{"label":"Expiration date","prop":"expiration"}},[_c('el-input',{attrs:{"type":"text","prefix-icon":"el-icon-date"},model:{value:(_vm.form.expiration),callback:function ($$v) {_vm.$set(_vm.form, "expiration", $$v)},expression:"form.expiration"}})],1)],1),_c('el-col',{attrs:{"md":12}},[_c('el-form-item',{attrs:{"label":"CVV","prop":"cvv"}},[_c('el-input',{attrs:{"type":"text","prefix-icon":"el-icon-setting"},model:{value:(_vm.form.cvv),callback:function ($$v) {_vm.$set(_vm.form, "cvv", $$v)},expression:"form.cvv"}})],1)],1)],1),_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":12}},[_c('el-form-item',[_c('el-button',{attrs:{"type":"primary"},on:{"click":_vm.onSubmit}},[_vm._v("Добавить")])],1)],1)],1)],1)}
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('el-form',{ref:"addForm",staticClass:"fixed-width",attrs:{"model":_vm.form,"rules":_vm.rules,"label-width":"125px"}},[_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":8}},[_c('el-form-item',{attrs:{"label":"Номер заказа","required":true,"prop":"orderNumber"}},[_c('el-input-number',{attrs:{"min":1,"controls":false},model:{value:(_vm.form.orderNumber),callback:function ($$v) {_vm.$set(_vm.form, "orderNumber", $$v)},expression:"form.orderNumber"}})],1)],1),_c('el-col',{attrs:{"md":16}},[_c('el-form-item',{attrs:{"label":"Цена","prop":"price"}},[_c('el-input',{staticClass:"input-with-select",attrs:{"type":"text"},model:{value:(_vm.form.price),callback:function ($$v) {_vm.$set(_vm.form, "price", $$v)},expression:"form.price"}},[_c('el-select',{attrs:{"slot":"append"},slot:"append",model:{value:(_vm.form.currency),callback:function ($$v) {_vm.$set(_vm.form, "currency", $$v)},expression:"form.currency"}},_vm._l((_vm.currencies),function(curr){return _c('el-option',{key:curr,attrs:{"value":curr}})}))],1)],1)],1)],1),_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":24}},[_c('el-form-item',{attrs:{"label":"Номер карты","prop":"cardNumber"}},[_c('el-input',{attrs:{"type":"text","prefix-icon":"el-icon-tickets"},model:{value:(_vm.form.cardNumber),callback:function ($$v) {_vm.$set(_vm.form, "cardNumber", $$v)},expression:"form.cardNumber"}})],1)],1)],1),_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":24}},[_c('el-form-item',{attrs:{"label":"Имя владельца","prop":"name"}},[_c('el-input',{attrs:{"type":"text","prefix-icon":"el-icon-view"},model:{value:(_vm.form.name),callback:function ($$v) {_vm.$set(_vm.form, "name", $$v)},expression:"form.name"}})],1)],1)],1),_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":12}},[_c('el-form-item',{attrs:{"label":"Expiration date","prop":"expiration"}},[_c('el-input',{attrs:{"type":"text","prefix-icon":"el-icon-date"},model:{value:(_vm.form.expiration),callback:function ($$v) {_vm.$set(_vm.form, "expiration", $$v)},expression:"form.expiration"}})],1)],1),_c('el-col',{attrs:{"md":12}},[_c('el-form-item',{attrs:{"label":"CVV","prop":"cvv"}},[_c('el-input',{attrs:{"type":"text","prefix-icon":"el-icon-setting"},model:{value:(_vm.form.cvv),callback:function ($$v) {_vm.$set(_vm.form, "cvv", $$v)},expression:"form.cvv"}})],1)],1)],1),_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":12}},[_c('el-form-item',[_c('el-button',{attrs:{"type":"primary"},on:{"click":_vm.onSubmit}},[_vm._v("Добавить")])],1)],1)],1)],1)}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
@@ -381,7 +381,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('el-form',{staticClass:"demo-form-inline",attrs:{"inline":true,"rules":_vm.rules,"model":_vm.formInline,"size":"mini"}},[_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":2}},[_c('el-form-item',[_c('el-input',{attrs:{"placeholder":"Номер заказа","disabled":true},model:{value:(_vm.formInline.orderNumber),callback:function ($$v) {_vm.$set(_vm.formInline, "orderNumber", $$v)},expression:"formInline.orderNumber"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"price"}},[_c('el-input',{attrs:{"placeholder":"Цена"},model:{value:(_vm.formInline.price),callback:function ($$v) {_vm.$set(_vm.formInline, "price", $$v)},expression:"formInline.price"}})],1)],1),_c('el-col',{attrs:{"md":2}},[_c('el-form-item',{attrs:{"prop":"currency"}},[_c('el-select',{model:{value:(_vm.formInline.currency),callback:function ($$v) {_vm.$set(_vm.formInline, "currency", $$v)},expression:"formInline.currency"}},_vm._l((_vm.availableCurrencies),function(curr){return _c('el-option',{key:curr,attrs:{"value":curr}})}))],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"cardNumber"}},[_c('el-input',{attrs:{"placeholder":"Номер карты"},model:{value:(_vm.formInline.cardNumber),callback:function ($$v) {_vm.$set(_vm.formInline, "cardNumber", $$v)},expression:"formInline.cardNumber"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"name"}},[_c('el-input',{attrs:{"placeholder":"Имя владельца"},model:{value:(_vm.formInline.name),callback:function ($$v) {_vm.$set(_vm.formInline, "name", $$v)},expression:"formInline.name"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"expiration"}},[_c('el-input',{attrs:{"placeholder":"Expires"},model:{value:(_vm.formInline.expiration),callback:function ($$v) {_vm.$set(_vm.formInline, "expiration", $$v)},expression:"formInline.expiration"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"cvv"}},[_c('el-input',{attrs:{"placeholder":"CVV"},model:{value:(_vm.formInline.cvv),callback:function ($$v) {_vm.$set(_vm.formInline, "cvv", $$v)},expression:"formInline.cvv"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',[_c('el-button-group',[_c('el-button',{attrs:{"type":"success","icon":"el-icon-edit"},on:{"click":_vm.editOrder}}),_c('el-popover',{ref:"popover5",attrs:{"placement":"top","width":"160"},model:{value:(_vm.confirmationVisible),callback:function ($$v) {_vm.confirmationVisible=$$v},expression:"confirmationVisible"}},[_c('p',[_vm._v("Точно удалить?")]),_c('div',{staticStyle:{"text-align":"right","margin":"0"}},[_c('el-button',{attrs:{"size":"mini","type":"primary"},on:{"click":function($event){_vm.confirmationVisible = false}}},[_vm._v("отмена")]),_c('el-button',{attrs:{"size":"mini","type":"danger"},on:{"click":_vm.deleteOrder}},[_vm._v("удалить")])],1)]),_c('el-button',{directives:[{name:"popover",rawName:"v-popover:popover5",arg:"popover5"}],attrs:{"type":"danger","icon":"el-icon-delete"}})],1)],1)],1)],1)],1)}
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('el-form',{ref:"editForm",staticClass:"demo-form-inline",attrs:{"inline":true,"rules":_vm.rules,"model":_vm.formInline,"size":"mini"}},[_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":2}},[_c('el-form-item',[_c('el-input',{attrs:{"placeholder":"Номер заказа","disabled":true},model:{value:(_vm.formInline.orderNumber),callback:function ($$v) {_vm.$set(_vm.formInline, "orderNumber", $$v)},expression:"formInline.orderNumber"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"price"}},[_c('el-input',{attrs:{"placeholder":"Цена"},model:{value:(_vm.formInline.price),callback:function ($$v) {_vm.$set(_vm.formInline, "price", $$v)},expression:"formInline.price"}})],1)],1),_c('el-col',{attrs:{"md":2}},[_c('el-form-item',{attrs:{"prop":"currency"}},[_c('el-select',{model:{value:(_vm.formInline.currency),callback:function ($$v) {_vm.$set(_vm.formInline, "currency", $$v)},expression:"formInline.currency"}},_vm._l((_vm.availableCurrencies),function(curr){return _c('el-option',{key:curr,attrs:{"value":curr}})}))],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"cardNumber"}},[_c('el-input',{attrs:{"placeholder":"Номер карты"},model:{value:(_vm.formInline.cardNumber),callback:function ($$v) {_vm.$set(_vm.formInline, "cardNumber", $$v)},expression:"formInline.cardNumber"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"name"}},[_c('el-input',{attrs:{"placeholder":"Имя владельца"},model:{value:(_vm.formInline.name),callback:function ($$v) {_vm.$set(_vm.formInline, "name", $$v)},expression:"formInline.name"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"expiration"}},[_c('el-input',{attrs:{"placeholder":"Expires"},model:{value:(_vm.formInline.expiration),callback:function ($$v) {_vm.$set(_vm.formInline, "expiration", $$v)},expression:"formInline.expiration"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"cvv"}},[_c('el-input',{attrs:{"placeholder":"CVV"},model:{value:(_vm.formInline.cvv),callback:function ($$v) {_vm.$set(_vm.formInline, "cvv", $$v)},expression:"formInline.cvv"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',[_c('el-button-group',[_c('el-button',{attrs:{"type":"success","icon":"el-icon-edit"},on:{"click":_vm.editOrder}}),_c('el-popover',{ref:"popover5",attrs:{"placement":"top","width":"160"},model:{value:(_vm.confirmationVisible),callback:function ($$v) {_vm.confirmationVisible=$$v},expression:"confirmationVisible"}},[_c('p',[_vm._v("Точно удалить?")]),_c('div',{staticStyle:{"text-align":"right","margin":"0"}},[_c('el-button',{attrs:{"size":"mini","type":"primary"},on:{"click":function($event){_vm.confirmationVisible = false}}},[_vm._v("отмена")]),_c('el-button',{attrs:{"size":"mini","type":"danger"},on:{"click":_vm.deleteOrder}},[_vm._v("удалить")])],1)]),_c('el-button',{directives:[{name:"popover",rawName:"v-popover:popover5",arg:"popover5"}],attrs:{"type":"danger","icon":"el-icon-delete"}})],1)],1)],1)],1)],1)}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
@@ -730,104 +730,131 @@ var rules = Object(__WEBPACK_IMPORTED_MODULE_5__util_validators__["a" /* default
     onSubmit: function onSubmit() {
       var _this = this;
 
-      return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-        var response, errors, timeout, _loop, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, err;
-
-        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+      return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                _context.next = 2;
-                return Object(__WEBPACK_IMPORTED_MODULE_4__util_submitForm__["a" /* default */])('POST', _this.form);
+                _this.$refs.addForm.validate(function () {
+                  var _ref = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(valid) {
+                    var response, errors, timeout, _loop, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, err;
 
-              case 2:
-                response = _context.sent;
+                    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                      while (1) {
+                        switch (_context.prev = _context.next) {
+                          case 0:
+                            if (valid) {
+                              _context.next = 2;
+                              break;
+                            }
 
-                if (!response.ok) {
-                  _context.next = 8;
-                  break;
-                }
+                            return _context.abrupt('return', false);
 
-                _this.$notify({
-                  title: 'Добавлен',
-                  message: '\u0417\u0430\u043A\u0430\u0437 ' + _this.form.orderNumber + ' \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D',
-                  type: 'success',
-                  offset: 100,
-                  position: 'bottom-left'
-                });
-                _this.resetForm();
-                _context.next = 32;
-                break;
+                          case 2:
+                            _context.next = 4;
+                            return Object(__WEBPACK_IMPORTED_MODULE_4__util_submitForm__["a" /* default */])('POST', _this.form);
 
-              case 8:
-                _context.next = 10;
-                return response.json();
+                          case 4:
+                            response = _context.sent;
 
-              case 10:
-                errors = _context.sent;
-                timeout = 0;
+                            if (!response.ok) {
+                              _context.next = 10;
+                              break;
+                            }
 
-                _loop = function _loop(err) {
-                  setTimeout(function () {
-                    _this.$notify.error({
-                      title: 'Ошибка',
-                      message: err,
-                      offset: 100,
-                      position: 'bottom-left'
-                    });
-                  }, timeout);
-                  timeout += 200;
-                };
+                            _this.$notify({
+                              title: 'Добавлен',
+                              message: '\u0417\u0430\u043A\u0430\u0437 ' + _this.form.orderNumber + ' \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D',
+                              type: 'success',
+                              offset: 100,
+                              position: 'bottom-left'
+                            });
+                            _this.resetForm();
+                            _context.next = 34;
+                            break;
 
-                _iteratorNormalCompletion = true;
-                _didIteratorError = false;
-                _iteratorError = undefined;
-                _context.prev = 16;
+                          case 10:
+                            _context.next = 12;
+                            return response.json();
 
-                for (_iterator = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator___default()(errors); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                  err = _step.value;
+                          case 12:
+                            errors = _context.sent;
+                            timeout = 0;
 
-                  _loop(err);
-                }
-                _context.next = 24;
-                break;
+                            _loop = function _loop(err) {
+                              setTimeout(function () {
+                                _this.$notify.error({
+                                  title: 'Ошибка',
+                                  message: err,
+                                  offset: 100,
+                                  position: 'bottom-left'
+                                });
+                              }, timeout);
+                              timeout += 200;
+                            };
 
-              case 20:
-                _context.prev = 20;
-                _context.t0 = _context['catch'](16);
-                _didIteratorError = true;
-                _iteratorError = _context.t0;
+                            _iteratorNormalCompletion = true;
+                            _didIteratorError = false;
+                            _iteratorError = undefined;
+                            _context.prev = 18;
 
-              case 24:
-                _context.prev = 24;
-                _context.prev = 25;
+                            for (_iterator = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator___default()(errors); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                              err = _step.value;
 
-                if (!_iteratorNormalCompletion && _iterator.return) {
-                  _iterator.return();
-                }
+                              _loop(err);
+                            }
+                            _context.next = 26;
+                            break;
 
-              case 27:
-                _context.prev = 27;
+                          case 22:
+                            _context.prev = 22;
+                            _context.t0 = _context['catch'](18);
+                            _didIteratorError = true;
+                            _iteratorError = _context.t0;
 
-                if (!_didIteratorError) {
-                  _context.next = 30;
-                  break;
-                }
+                          case 26:
+                            _context.prev = 26;
+                            _context.prev = 27;
 
-                throw _iteratorError;
+                            if (!_iteratorNormalCompletion && _iterator.return) {
+                              _iterator.return();
+                            }
 
-              case 30:
-                return _context.finish(27);
+                          case 29:
+                            _context.prev = 29;
 
-              case 31:
-                return _context.finish(24);
+                            if (!_didIteratorError) {
+                              _context.next = 32;
+                              break;
+                            }
 
-              case 32:
+                            throw _iteratorError;
+
+                          case 32:
+                            return _context.finish(29);
+
+                          case 33:
+                            return _context.finish(26);
+
+                          case 34:
+                          case 'end':
+                            return _context.stop();
+                        }
+                      }
+                    }, _callee, _this, [[18, 22, 26, 34], [27,, 29, 33]]);
+                  }));
+
+                  return function (_x) {
+                    return _ref.apply(this, arguments);
+                  };
+                }());
+
+              case 1:
               case 'end':
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, _this, [[16, 20, 24, 32], [25,, 27, 31]]);
+        }, _callee2, _this);
       }))();
     },
     resetForm: function resetForm() {
@@ -1091,103 +1118,130 @@ var rules = Object(__WEBPACK_IMPORTED_MODULE_5__util_validators__["a" /* default
     editOrder: function editOrder() {
       var _this = this;
 
-      return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-        var response, errors, timeout, _loop, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, err;
-
-        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+      return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                _context.next = 2;
-                return Object(__WEBPACK_IMPORTED_MODULE_4__util_submitForm__["a" /* default */])('PUT', _this.formInline);
+                _this.$refs.editForm.validate(function () {
+                  var _ref = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(valid) {
+                    var response, errors, timeout, _loop, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, err;
 
-              case 2:
-                response = _context.sent;
+                    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                      while (1) {
+                        switch (_context.prev = _context.next) {
+                          case 0:
+                            if (valid) {
+                              _context.next = 2;
+                              break;
+                            }
 
-                if (!response.ok) {
-                  _context.next = 7;
-                  break;
-                }
+                            return _context.abrupt('return', false);
 
-                _this.$notify({
-                  title: 'Изменен',
-                  message: '\u0417\u0430\u043A\u0430\u0437 ' + _this.formInline.orderNumber + ' \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u043E\u0442\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u043D',
-                  type: 'success',
-                  offset: 100,
-                  position: 'bottom-left'
-                });
-                _context.next = 31;
-                break;
+                          case 2:
+                            _context.next = 4;
+                            return Object(__WEBPACK_IMPORTED_MODULE_4__util_submitForm__["a" /* default */])('PUT', _this.formInline);
 
-              case 7:
-                _context.next = 9;
-                return response.json();
+                          case 4:
+                            response = _context.sent;
 
-              case 9:
-                errors = _context.sent;
-                timeout = 0;
+                            if (!response.ok) {
+                              _context.next = 9;
+                              break;
+                            }
 
-                _loop = function _loop(err) {
-                  setTimeout(function () {
-                    _this.$notify.error({
-                      title: 'Ошибка',
-                      message: err,
-                      offset: 100,
-                      position: 'bottom-left'
-                    });
-                  }, timeout);
-                  timeout += 200;
-                };
+                            _this.$notify({
+                              title: 'Изменен',
+                              message: '\u0417\u0430\u043A\u0430\u0437 ' + _this.formInline.orderNumber + ' \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u043E\u0442\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u043D',
+                              type: 'success',
+                              offset: 100,
+                              position: 'bottom-left'
+                            });
+                            _context.next = 33;
+                            break;
 
-                _iteratorNormalCompletion = true;
-                _didIteratorError = false;
-                _iteratorError = undefined;
-                _context.prev = 15;
+                          case 9:
+                            _context.next = 11;
+                            return response.json();
 
-                for (_iterator = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator___default()(errors); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                  err = _step.value;
+                          case 11:
+                            errors = _context.sent;
+                            timeout = 0;
 
-                  _loop(err);
-                }
-                _context.next = 23;
-                break;
+                            _loop = function _loop(err) {
+                              setTimeout(function () {
+                                _this.$notify.error({
+                                  title: 'Ошибка',
+                                  message: err,
+                                  offset: 100,
+                                  position: 'bottom-left'
+                                });
+                              }, timeout);
+                              timeout += 200;
+                            };
 
-              case 19:
-                _context.prev = 19;
-                _context.t0 = _context['catch'](15);
-                _didIteratorError = true;
-                _iteratorError = _context.t0;
+                            _iteratorNormalCompletion = true;
+                            _didIteratorError = false;
+                            _iteratorError = undefined;
+                            _context.prev = 17;
 
-              case 23:
-                _context.prev = 23;
-                _context.prev = 24;
+                            for (_iterator = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator___default()(errors); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                              err = _step.value;
 
-                if (!_iteratorNormalCompletion && _iterator.return) {
-                  _iterator.return();
-                }
+                              _loop(err);
+                            }
+                            _context.next = 25;
+                            break;
 
-              case 26:
-                _context.prev = 26;
+                          case 21:
+                            _context.prev = 21;
+                            _context.t0 = _context['catch'](17);
+                            _didIteratorError = true;
+                            _iteratorError = _context.t0;
 
-                if (!_didIteratorError) {
-                  _context.next = 29;
-                  break;
-                }
+                          case 25:
+                            _context.prev = 25;
+                            _context.prev = 26;
 
-                throw _iteratorError;
+                            if (!_iteratorNormalCompletion && _iterator.return) {
+                              _iterator.return();
+                            }
 
-              case 29:
-                return _context.finish(26);
+                          case 28:
+                            _context.prev = 28;
 
-              case 30:
-                return _context.finish(23);
+                            if (!_didIteratorError) {
+                              _context.next = 31;
+                              break;
+                            }
 
-              case 31:
+                            throw _iteratorError;
+
+                          case 31:
+                            return _context.finish(28);
+
+                          case 32:
+                            return _context.finish(25);
+
+                          case 33:
+                          case 'end':
+                            return _context.stop();
+                        }
+                      }
+                    }, _callee, _this, [[17, 21, 25, 33], [26,, 28, 32]]);
+                  }));
+
+                  return function (_x) {
+                    return _ref.apply(this, arguments);
+                  };
+                }());
+
+              case 1:
               case 'end':
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, _this, [[15, 19, 23, 31], [24,, 26, 30]]);
+        }, _callee2, _this);
       }))();
     },
     deleteOrder: function deleteOrder() {
@@ -2118,4 +2172,4 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /***/ })
 
 },["NHnr"]);
-//# sourceMappingURL=app.45aedf1444ab7aae4871.js.map
+//# sourceMappingURL=app.82f1465f667a8f747538.js.map
