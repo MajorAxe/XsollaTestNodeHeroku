@@ -859,13 +859,7 @@ var rules = Object(__WEBPACK_IMPORTED_MODULE_5__util_validators__["a" /* default
       }))();
     },
     resetForm: function resetForm() {
-      this.form.orderNumber = '';
-      this.form.price = 0.00;
-      this.form.currency = 'USD';
-      this.form.cardNumber = '';
-      this.form.name = '';
-      this.form.expiration = '';
-      this.form.cvv = '';
+      this.$refs.addForm.resetFields();
     }
   }
 });
@@ -2173,4 +2167,4 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /***/ })
 
 },["NHnr"]);
-//# sourceMappingURL=app.3900fdc47d05e98eb591.js.map
+//# sourceMappingURL=app.b55be84d2c0cdba23641.js.map
