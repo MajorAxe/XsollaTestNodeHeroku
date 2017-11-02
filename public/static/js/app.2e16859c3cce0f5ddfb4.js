@@ -70,7 +70,7 @@ function encodeForm(form) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"app"}},[_c('el-container',[_c('el-aside',[_c('sidebar')],1),_c('el-main',[_c('router-view',{attrs:{"orders":_vm.orders,"currencies":_vm.availableCurrencies}})],1)],1)],1)}
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"app"}},[_c('el-container',[_c('el-aside',[_c('sidebar')],1),_c('el-main',[_c('router-view',{attrs:{"orders":_vm.orders,"currencies":_vm.availableCurrencies},on:{"deleteorder":_vm.deleteOrder}})],1)],1)],1)}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
@@ -939,15 +939,11 @@ var Component = normalizeComponent(
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator__ = __webpack_require__("BO1k");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator__ = __webpack_require__("Xxa5");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator__ = __webpack_require__("exGp");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ListElement_vue__ = __webpack_require__("YffL");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_submitForm__ = __webpack_require__("1VaP");
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__("Xxa5");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_asyncToGenerator__ = __webpack_require__("exGp");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_asyncToGenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_asyncToGenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ListElement_vue__ = __webpack_require__("YffL");
 
 
 //
@@ -958,12 +954,11 @@ var Component = normalizeComponent(
 //
 //
 //
-
 
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-  components: { ListElement: __WEBPACK_IMPORTED_MODULE_3__ListElement_vue__["a" /* default */] },
+  components: { ListElement: __WEBPACK_IMPORTED_MODULE_2__ListElement_vue__["a" /* default */] },
   name: 'ListOrder',
   props: {
     currencies: {
@@ -975,7 +970,6 @@ var Component = normalizeComponent(
   },
   data: function data() {
     return {
-      localList: [],
       ordersOnPage: 15,
       currentPage: 1,
       displayPagination: false
@@ -987,12 +981,12 @@ var Component = normalizeComponent(
       get: function get() {
         var _this = this;
 
-        return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee() {
-          return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+        return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+          return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
                 case 0:
-                  return _context.abrupt('return', _this.localList.slice((_this.currentPage - 1) * _this.ordersOnPage, _this.currentPage * _this.ordersOnPage));
+                  return _context.abrupt('return', _this.orders.slice((_this.currentPage - 1) * _this.ordersOnPage, _this.currentPage * _this.ordersOnPage));
 
                 case 1:
                 case 'end':
@@ -1008,111 +1002,7 @@ var Component = normalizeComponent(
   },
   methods: {
     deleteOrder: function deleteOrder(number) {
-      var _this2 = this;
-
-      return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee2() {
-        var response, indexToDel, errors, timeout, _loop, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, err;
-
-        return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return Object(__WEBPACK_IMPORTED_MODULE_4__util_submitForm__["a" /* default */])('DELETE', { orderNumber: number });
-
-              case 2:
-                response = _context2.sent;
-
-                if (!response.ok) {
-                  _context2.next = 9;
-                  break;
-                }
-
-                indexToDel = _this2.localList.findIndex(function (order) {
-                  return order.order_number === number;
-                });
-
-                _this2.localList.splice(indexToDel, 1);
-                _this2.$notify({
-                  title: 'Удален',
-                  message: '\u0417\u0430\u043A\u0430\u0437 ' + number + ' \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u0443\u0434\u0430\u043B\u0435\u043D',
-                  type: 'success',
-                  offset: 100,
-                  position: 'bottom-left'
-                });
-                _context2.next = 33;
-                break;
-
-              case 9:
-                _context2.next = 11;
-                return response.json();
-
-              case 11:
-                errors = _context2.sent;
-                timeout = 0;
-
-                _loop = function _loop(err) {
-                  setTimeout(function () {
-                    _this2.$notify.error({
-                      title: 'Ошибка',
-                      message: err,
-                      offset: 100,
-                      position: 'bottom-left'
-                    });
-                  }, timeout);
-                  timeout += 200;
-                };
-
-                _iteratorNormalCompletion = true;
-                _didIteratorError = false;
-                _iteratorError = undefined;
-                _context2.prev = 17;
-
-                for (_iterator = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default()(errors); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                  err = _step.value;
-
-                  _loop(err);
-                }
-                _context2.next = 25;
-                break;
-
-              case 21:
-                _context2.prev = 21;
-                _context2.t0 = _context2['catch'](17);
-                _didIteratorError = true;
-                _iteratorError = _context2.t0;
-
-              case 25:
-                _context2.prev = 25;
-                _context2.prev = 26;
-
-                if (!_iteratorNormalCompletion && _iterator.return) {
-                  _iterator.return();
-                }
-
-              case 28:
-                _context2.prev = 28;
-
-                if (!_didIteratorError) {
-                  _context2.next = 31;
-                  break;
-                }
-
-                throw _iteratorError;
-
-              case 31:
-                return _context2.finish(28);
-
-              case 32:
-                return _context2.finish(25);
-
-              case 33:
-              case 'end':
-                return _context2.stop();
-            }
-          }
-        }, _callee2, _this2, [[17, 21, 25, 33], [26,, 28, 32]]);
-      }))();
+      this.$emit('deleteorder', number);
     }
   }
 });
@@ -1976,13 +1866,17 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__("Xxa5");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_asyncToGenerator__ = __webpack_require__("exGp");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_asyncToGenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_asyncToGenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Sidebar_vue__ = __webpack_require__("lZ5c");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator__ = __webpack_require__("BO1k");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator__ = __webpack_require__("Xxa5");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator__ = __webpack_require__("exGp");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Sidebar_vue__ = __webpack_require__("lZ5c");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_submitForm__ = __webpack_require__("1VaP");
 
 
+
 //
 //
 //
@@ -1992,6 +1886,8 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 //
 //
 //
+
+
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -2008,15 +1904,15 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
   },
 
   components: {
-    Sidebar: __WEBPACK_IMPORTED_MODULE_2__components_Sidebar_vue__["a" /* default */]
+    Sidebar: __WEBPACK_IMPORTED_MODULE_3__components_Sidebar_vue__["a" /* default */]
   },
   methods: {
     getAvailableCurrencies: function getAvailableCurrencies() {
       var _this = this;
 
-      return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+      return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee() {
         var response;
-        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+        return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
@@ -2063,9 +1959,9 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
     getOrdersList: function getOrdersList() {
       var _this2 = this;
 
-      return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+      return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee2() {
         var response;
-        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+        return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
@@ -2108,6 +2004,113 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
           }
         }, _callee2, _this2);
       }))();
+    },
+    deleteOrder: function deleteOrder(number) {
+      var _this3 = this;
+
+      return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee3() {
+        var response, indexToDel, errors, timeout, _loop, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, err;
+
+        return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return Object(__WEBPACK_IMPORTED_MODULE_4__util_submitForm__["a" /* default */])('DELETE', { orderNumber: number });
+
+              case 2:
+                response = _context3.sent;
+
+                if (!response.ok) {
+                  _context3.next = 9;
+                  break;
+                }
+
+                indexToDel = _this3.orders.findIndex(function (order) {
+                  return order.order_number === number;
+                });
+
+                _this3.orders.splice(indexToDel, 1);
+                _this3.$notify({
+                  title: 'Удален',
+                  message: '\u0417\u0430\u043A\u0430\u0437 ' + number + ' \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u0443\u0434\u0430\u043B\u0435\u043D',
+                  type: 'success',
+                  offset: 100,
+                  position: 'bottom-left'
+                });
+                _context3.next = 33;
+                break;
+
+              case 9:
+                _context3.next = 11;
+                return response.json();
+
+              case 11:
+                errors = _context3.sent;
+                timeout = 0;
+
+                _loop = function _loop(err) {
+                  setTimeout(function () {
+                    _this3.$notify.error({
+                      title: 'Ошибка',
+                      message: err,
+                      offset: 100,
+                      position: 'bottom-left'
+                    });
+                  }, timeout);
+                  timeout += 200;
+                };
+
+                _iteratorNormalCompletion = true;
+                _didIteratorError = false;
+                _iteratorError = undefined;
+                _context3.prev = 17;
+
+                for (_iterator = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default()(errors); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                  err = _step.value;
+
+                  _loop(err);
+                }
+                _context3.next = 25;
+                break;
+
+              case 21:
+                _context3.prev = 21;
+                _context3.t0 = _context3['catch'](17);
+                _didIteratorError = true;
+                _iteratorError = _context3.t0;
+
+              case 25:
+                _context3.prev = 25;
+                _context3.prev = 26;
+
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                  _iterator.return();
+                }
+
+              case 28:
+                _context3.prev = 28;
+
+                if (!_didIteratorError) {
+                  _context3.next = 31;
+                  break;
+                }
+
+                throw _iteratorError;
+
+              case 31:
+                return _context3.finish(28);
+
+              case 32:
+                return _context3.finish(25);
+
+              case 33:
+              case 'end':
+                return _context3.stop();
+            }
+          }
+        }, _callee3, _this3, [[17, 21, 25, 33], [26,, 28, 32]]);
+      }))();
     }
   }
 });
@@ -2115,4 +2118,4 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /***/ })
 
 },["NHnr"]);
-//# sourceMappingURL=app.ec9dd3818697a83bdb4e.js.map
+//# sourceMappingURL=app.2e16859c3cce0f5ddfb4.js.map
