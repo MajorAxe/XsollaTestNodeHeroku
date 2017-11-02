@@ -421,7 +421,7 @@ function currency(rule, value, callback) {
 }
 
 function cardNumber(rule, value, callback) {
-  if (!__WEBPACK_IMPORTED_MODULE_0__server_validation___default.a.cardNumber(value.trim())) callback(new Error('Введите корректный номер карты'));else callback();
+  if (!__WEBPACK_IMPORTED_MODULE_0__server_validation___default.a.cardNumber(value.trim())) callback(new Error('Введите корректный номер'));else callback();
 }
 
 function name(rule, value, callback) {
@@ -596,7 +596,7 @@ module.exports = {
 __WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
-  mode: 'history',
+  // mode: 'history',
   routes: [{
     path: '/',
     name: 'Hello',
@@ -2168,4 +2168,4 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /***/ })
 
 },["NHnr"]);
-//# sourceMappingURL=app.299693cabf384659c7d6.js.map
+//# sourceMappingURL=app.0c252ef309dbeb02c101.js.map
