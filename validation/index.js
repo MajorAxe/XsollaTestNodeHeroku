@@ -69,7 +69,7 @@ function expirationDateValid(exp) {
 function expirationDateActual(exp) {
     if (!exp || !patterns.expiration.test(exp)) return false
     const [month, year] = exp.split('/'),
-        expires = new Date(month + '/01/' + year)
+        expires = new Date(month + '/01/20' + year)
     return expires > new Date()
 }
 
@@ -123,8 +123,7 @@ function forUpdate(orderNumber, price, currency, cardNumber, expiration, cvv, na
     if (expiration && !this.expirationDateValid(expiration)) {
         validationErr.push(messages.expirationDateInvalid)
         valid = false
-    }
-    if (expiration && !this.expirationDateActual(expiration)) {
+    } else if (expiration && !this.expirationDateActual(expiration)) {
         validationErr.push(messages.expirationDateExpired)
         valid = false
     }
@@ -167,8 +166,7 @@ function forAdd(orderNumber, price, currency, cardNumber, expiration, cvv, name)
     if (!this.expirationDateValid(expiration)) {
         validationErr.push(messages.expirationDateInvalid)
         valid = false
-    }
-    if (!this.expirationDateActual(expiration)) {
+    } else if (!this.expirationDateActual(expiration)) {
         validationErr.push(messages.expirationDateExpired)
         valid = false
     }

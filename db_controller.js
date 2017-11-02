@@ -17,7 +17,7 @@ module.exports = {
  */
 async function getAllCurrencyNames() {
     try {
-        const currencies = await db.any('SELECT name FROM currencies')
+        const currencies = await db.any('SELECT name FROM currencies ORDER BY id')
         return currencies.map(c => c.name)
     }
     catch(e) {
@@ -32,7 +32,7 @@ async function getAllCurrencyNames() {
  */
 async function getAllOrders() {
     try {
-        return await db.any('SELECT time, order_number, price, currencies.name AS currency, card_number, expiration, cvv, orders.name AS name FROM orders LEFT JOIN currencies ON orders.currency = currencies.id')
+        return db.any('SELECT time, order_number, price, currencies.name AS currency, card_number, expiration, cvv, orders.name AS name FROM orders LEFT JOIN currencies ON orders.currency = currencies.id ORDER BY time')
     }
     catch(e) {
         console.error('DB error in getAllOrders:', e)
@@ -86,8 +86,8 @@ async function updateOrder(order_number, price, currency, card_number, expiratio
  */
 async function deleteOrder(order_number) {
     try {
-        const deletedRowsCount = await db.any('DELETE FROM orders WHERE order_number = $1', [order_number])
-        return deletedRowsCount === 1
+        const deletedRows = await db.any('DELETE FROM orders WHERE order_number = $1 RETURNING order_number', [order_number])
+        return deletedRows.length === 1
     }
     catch(e) {
         console.error('DB error in deleteOrder:', e)

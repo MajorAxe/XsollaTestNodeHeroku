@@ -1,5 +1,5 @@
 module.exports = {
-    apiport: 3000,
+    apiport: 80,
     dbtest: {
         host: 'localhost',
         port: 5432,
