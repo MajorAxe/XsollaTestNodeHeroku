@@ -987,43 +987,18 @@ var Component = normalizeComponent(
   },
 
   asyncComputed: {
-    ordersList: {
+    visibleOrdersList: {
       get: function get() {
         var _this = this;
 
         return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee() {
-          var response;
           return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
                 case 0:
-                  _context.next = 2;
-                  return fetch('http://localhost/order', {
-                    method: 'GET',
-                    headers: {
-                      'Accept': 'application/json'
-                    }
-                  });
+                  return _context.abrupt('return', _this.localList.slice((_this.currentPage - 1) * _this.ordersOnPage, _this.currentPage * _this.ordersOnPage));
 
-                case 2:
-                  response = _context.sent;
-
-                  if (!response.ok) {
-                    _context.next = 5;
-                    break;
-                  }
-
-                  return _context.abrupt('return', response.json());
-
-                case 5:
-                  _this.$notify.error({
-                    title: 'Ошибка',
-                    message: 'Не удалось получить список заказов',
-                    offset: 100,
-                    position: 'bottom-left'
-                  });
-
-                case 6:
+                case 1:
                 case 'end':
                   return _context.stop();
               }
@@ -1033,125 +1008,56 @@ var Component = normalizeComponent(
       },
 
       default: []
-    },
-    visibleOrdersList: {
-      get: function get() {
-        var _this2 = this;
-
-        return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee2() {
-          return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
-            while (1) {
-              switch (_context2.prev = _context2.next) {
-                case 0:
-                  return _context2.abrupt('return', _this2.localList.slice((_this2.currentPage - 1) * _this2.ordersOnPage, _this2.currentPage * _this2.ordersOnPage));
-
-                case 1:
-                case 'end':
-                  return _context2.stop();
-              }
-            }
-          }, _callee2, _this2);
-        }))();
-      },
-
-      default: []
-    },
-    availableCurrencies: {
-      get: function get() {
-        var _this3 = this;
-
-        return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee3() {
-          var response;
-          return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
-            while (1) {
-              switch (_context3.prev = _context3.next) {
-                case 0:
-                  _context3.next = 2;
-                  return fetch('http://localhost/currencies', {
-                    method: 'GET',
-                    headers: {
-                      'Accept': 'application/json'
-                    }
-                  });
-
-                case 2:
-                  response = _context3.sent;
-
-                  if (!response.ok) {
-                    _context3.next = 5;
-                    break;
-                  }
-
-                  return _context3.abrupt('return', response.json());
-
-                case 5:
-                  _this3.$notify.error({
-                    title: 'Ошибка',
-                    message: 'Не удалось получить список валют',
-                    offset: 100,
-                    position: 'bottom-left'
-                  });
-
-                case 6:
-                case 'end':
-                  return _context3.stop();
-              }
-            }
-          }, _callee3, _this3);
-        }))();
-      },
-
-      default: []
     }
   },
   methods: {
     deleteOrder: function deleteOrder(number) {
-      var _this4 = this;
+      var _this2 = this;
 
-      return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee4() {
+      return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee2() {
         var response, indexToDel, errors, timeout, _loop, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, err;
 
-        return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+        return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context4.prev = _context4.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                _context4.next = 2;
+                _context2.next = 2;
                 return Object(__WEBPACK_IMPORTED_MODULE_4__util_submitForm__["a" /* default */])('DELETE', { orderNumber: number });
 
               case 2:
-                response = _context4.sent;
+                response = _context2.sent;
 
                 if (!response.ok) {
-                  _context4.next = 9;
+                  _context2.next = 9;
                   break;
                 }
 
-                indexToDel = _this4.localList.findIndex(function (order) {
+                indexToDel = _this2.localList.findIndex(function (order) {
                   return order.order_number === number;
                 });
 
-                _this4.localList.splice(indexToDel, 1);
-                _this4.$notify({
+                _this2.localList.splice(indexToDel, 1);
+                _this2.$notify({
                   title: 'Удален',
                   message: '\u0417\u0430\u043A\u0430\u0437 ' + number + ' \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u0443\u0434\u0430\u043B\u0435\u043D',
                   type: 'success',
                   offset: 100,
                   position: 'bottom-left'
                 });
-                _context4.next = 33;
+                _context2.next = 33;
                 break;
 
               case 9:
-                _context4.next = 11;
+                _context2.next = 11;
                 return response.json();
 
               case 11:
-                errors = _context4.sent;
+                errors = _context2.sent;
                 timeout = 0;
 
                 _loop = function _loop(err) {
                   setTimeout(function () {
-                    _this4.$notify.error({
+                    _this2.$notify.error({
                       title: 'Ошибка',
                       message: err,
                       offset: 100,
@@ -1164,65 +1070,65 @@ var Component = normalizeComponent(
                 _iteratorNormalCompletion = true;
                 _didIteratorError = false;
                 _iteratorError = undefined;
-                _context4.prev = 17;
+                _context2.prev = 17;
 
                 for (_iterator = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_get_iterator___default()(errors); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                   err = _step.value;
 
                   _loop(err);
                 }
-                _context4.next = 25;
+                _context2.next = 25;
                 break;
 
               case 21:
-                _context4.prev = 21;
-                _context4.t0 = _context4['catch'](17);
+                _context2.prev = 21;
+                _context2.t0 = _context2['catch'](17);
                 _didIteratorError = true;
-                _iteratorError = _context4.t0;
+                _iteratorError = _context2.t0;
 
               case 25:
-                _context4.prev = 25;
-                _context4.prev = 26;
+                _context2.prev = 25;
+                _context2.prev = 26;
 
                 if (!_iteratorNormalCompletion && _iterator.return) {
                   _iterator.return();
                 }
 
               case 28:
-                _context4.prev = 28;
+                _context2.prev = 28;
 
                 if (!_didIteratorError) {
-                  _context4.next = 31;
+                  _context2.next = 31;
                   break;
                 }
 
                 throw _iteratorError;
 
               case 31:
-                return _context4.finish(28);
+                return _context2.finish(28);
 
               case 32:
-                return _context4.finish(25);
+                return _context2.finish(25);
 
               case 33:
               case 'end':
-                return _context4.stop();
+                return _context2.stop();
             }
           }
-        }, _callee4, _this4, [[17, 21, 25, 33], [26,, 28, 32]]);
+        }, _callee2, _this2, [[17, 21, 25, 33], [26,, 28, 32]]);
       }))();
     },
     getOrdersList: function getOrdersList() {
-      var _this5 = this;
+      var _this3 = this;
 
-      return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee5() {
+      return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee3() {
         var response;
-        return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+        return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context5.prev = _context5.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
-                _context5.next = 2;
-                return fetch('http://localhost/order', {
+                _context3.next = 2;
+                return fetch('/order', {
                   method: 'GET',
                   headers: {
                     'Accept': 'application/json'
@@ -1230,23 +1136,23 @@ var Component = normalizeComponent(
                 });
 
               case 2:
-                response = _context5.sent;
+                response = _context3.sent;
 
                 if (!response.ok) {
-                  _context5.next = 9;
+                  _context3.next = 9;
                   break;
                 }
 
-                _context5.next = 6;
+                _context3.next = 6;
                 return response.json();
 
               case 6:
-                _this5.localList = _context5.sent;
-                _context5.next = 10;
+                _this3.localList = _context3.sent;
+                _context3.next = 10;
                 break;
 
               case 9:
-                _this5.$notify.error({
+                _this3.$notify.error({
                   title: 'Ошибка',
                   message: 'Не удалось получить список заказов',
                   offset: 100,
@@ -1255,10 +1161,10 @@ var Component = normalizeComponent(
 
               case 10:
               case 'end':
-                return _context5.stop();
+                return _context3.stop();
             }
           }
-        }, _callee5, _this5);
+        }, _callee3, _this3);
       }))();
     }
   }
@@ -2262,4 +2168,4 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /***/ })
 
 },["NHnr"]);
-//# sourceMappingURL=app.b4eda6ba3c53511eb3fb.js.map
+//# sourceMappingURL=app.299693cabf384659c7d6.js.map
