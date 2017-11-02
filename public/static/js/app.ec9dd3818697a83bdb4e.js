@@ -965,10 +965,6 @@ var Component = normalizeComponent(
 /* harmony default export */ __webpack_exports__["a"] = ({
   components: { ListElement: __WEBPACK_IMPORTED_MODULE_3__ListElement_vue__["a" /* default */] },
   name: 'ListOrder',
-  beforeMount: function beforeMount() {
-    this.getOrdersList();
-  },
-
   props: {
     currencies: {
       default: []
@@ -1116,55 +1112,6 @@ var Component = normalizeComponent(
             }
           }
         }, _callee2, _this2, [[17, 21, 25, 33], [26,, 28, 32]]);
-      }))();
-    },
-    getOrdersList: function getOrdersList() {
-      var _this3 = this;
-
-      return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee3() {
-        var response;
-        return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                _context3.next = 2;
-                return fetch('/order', {
-                  method: 'GET',
-                  headers: {
-                    'Accept': 'application/json'
-                  }
-                });
-
-              case 2:
-                response = _context3.sent;
-
-                if (!response.ok) {
-                  _context3.next = 9;
-                  break;
-                }
-
-                _context3.next = 6;
-                return response.json();
-
-              case 6:
-                _this3.localList = _context3.sent;
-                _context3.next = 10;
-                break;
-
-              case 9:
-                _this3.$notify.error({
-                  title: 'Ошибка',
-                  message: 'Не удалось получить список заказов',
-                  offset: 100,
-                  position: 'bottom-left'
-                });
-
-              case 10:
-              case 'end':
-                return _context3.stop();
-            }
-          }
-        }, _callee3, _this3);
       }))();
     }
   }
@@ -2168,4 +2115,4 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /***/ })
 
 },["NHnr"]);
-//# sourceMappingURL=app.0c252ef309dbeb02c101.js.map
+//# sourceMappingURL=app.ec9dd3818697a83bdb4e.js.map
