@@ -381,7 +381,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('el-form',{staticClass:"demo-form-inline",attrs:{"inline":true,"rules":_vm.rules,"model":_vm.formInline,"size":"mini"}},[_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":2}},[_c('el-form-item',[_c('el-input',{attrs:{"placeholder":"Номер заказа","disabled":true},model:{value:(_vm.formInline.orderNumber),callback:function ($$v) {_vm.$set(_vm.formInline, "orderNumber", $$v)},expression:"formInline.orderNumber"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"orderNumber"}},[_c('el-input',{attrs:{"placeholder":"Цена"},model:{value:(_vm.formInline.price),callback:function ($$v) {_vm.$set(_vm.formInline, "price", $$v)},expression:"formInline.price"}})],1)],1),_c('el-col',{attrs:{"md":2}},[_c('el-form-item',{attrs:{"prop":"currency"}},[_c('el-select',{model:{value:(_vm.formInline.currency),callback:function ($$v) {_vm.$set(_vm.formInline, "currency", $$v)},expression:"formInline.currency"}},_vm._l((_vm.availableCurrencies),function(curr){return _c('el-option',{key:curr,attrs:{"value":curr}})}))],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"cardNumber"}},[_c('el-input',{attrs:{"placeholder":"Номер карты"},model:{value:(_vm.formInline.cardNumber),callback:function ($$v) {_vm.$set(_vm.formInline, "cardNumber", $$v)},expression:"formInline.cardNumber"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"name"}},[_c('el-input',{attrs:{"placeholder":"Имя владельца"},model:{value:(_vm.formInline.name),callback:function ($$v) {_vm.$set(_vm.formInline, "name", $$v)},expression:"formInline.name"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"expiration"}},[_c('el-input',{attrs:{"placeholder":"Expires"},model:{value:(_vm.formInline.expiration),callback:function ($$v) {_vm.$set(_vm.formInline, "expiration", $$v)},expression:"formInline.expiration"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"cvv"}},[_c('el-input',{attrs:{"placeholder":"CVV"},model:{value:(_vm.formInline.cvv),callback:function ($$v) {_vm.$set(_vm.formInline, "cvv", $$v)},expression:"formInline.cvv"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',[_c('el-button-group',[_c('el-button',{attrs:{"type":"success","icon":"el-icon-edit"},on:{"click":_vm.editOrder}}),_c('el-popover',{ref:"popover5",attrs:{"placement":"top","width":"160"},model:{value:(_vm.confirmationVisible),callback:function ($$v) {_vm.confirmationVisible=$$v},expression:"confirmationVisible"}},[_c('p',[_vm._v("Точно удалить?")]),_c('div',{staticStyle:{"text-align":"right","margin":"0"}},[_c('el-button',{attrs:{"size":"mini","type":"primary"},on:{"click":function($event){_vm.confirmationVisible = false}}},[_vm._v("отмена")]),_c('el-button',{attrs:{"size":"mini","type":"danger"},on:{"click":_vm.deleteOrder}},[_vm._v("удалить")])],1)]),_c('el-button',{directives:[{name:"popover",rawName:"v-popover:popover5",arg:"popover5"}],attrs:{"type":"danger","icon":"el-icon-delete"}})],1)],1)],1)],1)],1)}
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('el-form',{staticClass:"demo-form-inline",attrs:{"inline":true,"rules":_vm.rules,"model":_vm.formInline,"size":"mini"}},[_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":2}},[_c('el-form-item',[_c('el-input',{attrs:{"placeholder":"Номер заказа","disabled":true},model:{value:(_vm.formInline.orderNumber),callback:function ($$v) {_vm.$set(_vm.formInline, "orderNumber", $$v)},expression:"formInline.orderNumber"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"price"}},[_c('el-input',{attrs:{"placeholder":"Цена"},model:{value:(_vm.formInline.price),callback:function ($$v) {_vm.$set(_vm.formInline, "price", $$v)},expression:"formInline.price"}})],1)],1),_c('el-col',{attrs:{"md":2}},[_c('el-form-item',{attrs:{"prop":"currency"}},[_c('el-select',{model:{value:(_vm.formInline.currency),callback:function ($$v) {_vm.$set(_vm.formInline, "currency", $$v)},expression:"formInline.currency"}},_vm._l((_vm.availableCurrencies),function(curr){return _c('el-option',{key:curr,attrs:{"value":curr}})}))],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"cardNumber"}},[_c('el-input',{attrs:{"placeholder":"Номер карты"},model:{value:(_vm.formInline.cardNumber),callback:function ($$v) {_vm.$set(_vm.formInline, "cardNumber", $$v)},expression:"formInline.cardNumber"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"name"}},[_c('el-input',{attrs:{"placeholder":"Имя владельца"},model:{value:(_vm.formInline.name),callback:function ($$v) {_vm.$set(_vm.formInline, "name", $$v)},expression:"formInline.name"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"expiration"}},[_c('el-input',{attrs:{"placeholder":"Expires"},model:{value:(_vm.formInline.expiration),callback:function ($$v) {_vm.$set(_vm.formInline, "expiration", $$v)},expression:"formInline.expiration"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"cvv"}},[_c('el-input',{attrs:{"placeholder":"CVV"},model:{value:(_vm.formInline.cvv),callback:function ($$v) {_vm.$set(_vm.formInline, "cvv", $$v)},expression:"formInline.cvv"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',[_c('el-button-group',[_c('el-button',{attrs:{"type":"success","icon":"el-icon-edit"},on:{"click":_vm.editOrder}}),_c('el-popover',{ref:"popover5",attrs:{"placement":"top","width":"160"},model:{value:(_vm.confirmationVisible),callback:function ($$v) {_vm.confirmationVisible=$$v},expression:"confirmationVisible"}},[_c('p',[_vm._v("Точно удалить?")]),_c('div',{staticStyle:{"text-align":"right","margin":"0"}},[_c('el-button',{attrs:{"size":"mini","type":"primary"},on:{"click":function($event){_vm.confirmationVisible = false}}},[_vm._v("отмена")]),_c('el-button',{attrs:{"size":"mini","type":"danger"},on:{"click":_vm.deleteOrder}},[_vm._v("удалить")])],1)]),_c('el-button',{directives:[{name:"popover",rawName:"v-popover:popover5",arg:"popover5"}],attrs:{"type":"danger","icon":"el-icon-delete"}})],1)],1)],1)],1)],1)}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
@@ -399,7 +399,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (function () {
   return {
     orderNumber: [{ required: true, validator: orderNumber, trigger: 'blur' }],
-    price: [{ required: true, validator: price, trigger: 'blur' }],
+    price: [{ required: true, validator: price, trigger: 'change, blur' }],
     currency: [{ required: true, validator: currency, trigger: 'blur' }],
     cardNumber: [{ required: true, validator: cardNumber, trigger: 'change, blur' }],
     name: [{ required: true, validator: name, trigger: 'blur' }],
@@ -429,8 +429,8 @@ function name(rule, value, callback) {
 }
 
 function expiration(rule, value, callback) {
-  if (!__WEBPACK_IMPORTED_MODULE_0__server_validation___default.a.expirationDateValid(value)) callback(new Error('Формат XX/XX'));
-  if (!__WEBPACK_IMPORTED_MODULE_0__server_validation___default.a.expirationDateActual(value)) callback(new Error('Карта просрочена'));else callback();
+  if (!__WEBPACK_IMPORTED_MODULE_0__server_validation___default.a.expirationDateValid(value.trim())) callback(new Error('Формат XX/XX'));
+  if (!__WEBPACK_IMPORTED_MODULE_0__server_validation___default.a.expirationDateActual(value.trim())) callback(new Error('Карта просрочена'));else callback();
 }
 
 function cvv(rule, value, callback) {
@@ -596,7 +596,7 @@ module.exports = {
 __WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
-  // mode: 'history',
+  mode: 'history',
   routes: [{
     path: '/',
     name: 'Hello',
@@ -714,7 +714,7 @@ var rules = Object(__WEBPACK_IMPORTED_MODULE_5__util_validators__["a" /* default
   data: function data() {
     return {
       form: {
-        orderNumber: 0,
+        orderNumber: 1,
         price: '0.00',
         currency: 'USD',
         cardNumber: '',
@@ -2118,4 +2118,4 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /***/ })
 
 },["NHnr"]);
-//# sourceMappingURL=app.2e16859c3cce0f5ddfb4.js.map
+//# sourceMappingURL=app.45aedf1444ab7aae4871.js.map

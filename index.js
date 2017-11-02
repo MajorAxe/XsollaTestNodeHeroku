@@ -1,6 +1,7 @@
 const apiport = process.env.PORT || require('./config').apiport,
       express = require('express'),
       bodyParser = require('body-parser'),
+      history = require('connect-history-api-fallback'),
       app = express(),
       routes = require('./routes')
 
@@ -11,6 +12,7 @@ const apiport = process.env.PORT || require('./config').apiport,
 //   next()
 // })
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(history())
 app.use(express.static('public'))
 
 app.route('/currencies')
