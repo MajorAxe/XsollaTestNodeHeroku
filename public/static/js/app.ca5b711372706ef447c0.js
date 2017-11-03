@@ -58,7 +58,7 @@ function encodeForm(form) {
   var formBody = [];
   for (var property in form) {
     var encodedKey = encodeURIComponent(property),
-        encodedValue = typeof form[property] === 'string' ? encodeURIComponent(form[property].trim()) : encodeURIComponent(form[property]);
+        encodedValue = property === 'name' ? encodeURIComponent(form[property]) : encodeURIComponent(form[property].toString().replace(/\s/g, ''));
     formBody.push(encodedKey + '=' + encodedValue);
   }
   return formBody.join('&');
@@ -358,7 +358,7 @@ var Component = normalizeComponent(
 module.exports = {
     orderNumber: /^\d+$/,
     price:       /^\d+\.\d{2}$/,
-    cardNumber:  /^\d{8,19}$/,
+    cardNumber:  /^\d{13,19}$/,
     expiration:  /^(0[1-9]|1[0-2])\/\d{2}$/,
     cvv:         /^\d{3,4}$/,
     name:        /^\w+\s\w+$/
@@ -370,7 +370,7 @@ module.exports = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('el-form',{ref:"addForm",staticClass:"fixed-width",attrs:{"model":_vm.form,"rules":_vm.rules,"label-width":"125px"}},[_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":8}},[_c('el-form-item',{attrs:{"label":"Номер заказа","required":true,"prop":"orderNumber"}},[_c('el-input-number',{attrs:{"min":1,"controls":false},model:{value:(_vm.form.orderNumber),callback:function ($$v) {_vm.$set(_vm.form, "orderNumber", $$v)},expression:"form.orderNumber"}})],1)],1),_c('el-col',{attrs:{"md":16}},[_c('el-form-item',{attrs:{"label":"Цена","prop":"price"}},[_c('el-input',{staticClass:"input-with-select",attrs:{"type":"text"},model:{value:(_vm.form.price),callback:function ($$v) {_vm.$set(_vm.form, "price", $$v)},expression:"form.price"}},[_c('el-select',{attrs:{"slot":"append"},slot:"append",model:{value:(_vm.form.currency),callback:function ($$v) {_vm.$set(_vm.form, "currency", $$v)},expression:"form.currency"}},_vm._l((_vm.currencies),function(curr){return _c('el-option',{key:curr,attrs:{"value":curr}})}))],1)],1)],1)],1),_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":24}},[_c('el-form-item',{attrs:{"label":"Номер карты","prop":"cardNumber"}},[_c('el-input',{attrs:{"type":"text","prefix-icon":"el-icon-tickets"},model:{value:(_vm.form.cardNumber),callback:function ($$v) {_vm.$set(_vm.form, "cardNumber", $$v)},expression:"form.cardNumber"}})],1)],1)],1),_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":24}},[_c('el-form-item',{attrs:{"label":"Имя владельца","prop":"name"}},[_c('el-input',{attrs:{"type":"text","prefix-icon":"el-icon-view"},model:{value:(_vm.form.name),callback:function ($$v) {_vm.$set(_vm.form, "name", $$v)},expression:"form.name"}})],1)],1)],1),_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":12}},[_c('el-form-item',{attrs:{"label":"Expiration date","prop":"expiration"}},[_c('el-input',{attrs:{"type":"text","prefix-icon":"el-icon-date"},model:{value:(_vm.form.expiration),callback:function ($$v) {_vm.$set(_vm.form, "expiration", $$v)},expression:"form.expiration"}})],1)],1),_c('el-col',{attrs:{"md":12}},[_c('el-form-item',{attrs:{"label":"CVV","prop":"cvv"}},[_c('el-input',{attrs:{"type":"text","prefix-icon":"el-icon-setting"},model:{value:(_vm.form.cvv),callback:function ($$v) {_vm.$set(_vm.form, "cvv", $$v)},expression:"form.cvv"}})],1)],1)],1),_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":12}},[_c('el-form-item',[_c('el-button',{attrs:{"type":"primary"},on:{"click":_vm.onSubmit}},[_vm._v("Добавить")])],1)],1)],1)],1)}
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('el-form',{ref:"addForm",staticClass:"fixed-width",attrs:{"model":_vm.form,"rules":_vm.rules,"label-width":"125px"}},[_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":8}},[_c('el-form-item',{attrs:{"label":"Номер заказа","required":true,"prop":"orderNumber"}},[_c('el-input-number',{attrs:{"min":1,"controls":false},model:{value:(_vm.form.orderNumber),callback:function ($$v) {_vm.$set(_vm.form, "orderNumber", $$v)},expression:"form.orderNumber"}})],1)],1),_c('el-col',{attrs:{"md":16}},[_c('el-form-item',{attrs:{"label":"Цена","prop":"price"}},[_c('el-input',{directives:[{name:"mask",rawName:"v-mask",value:('money'),expression:"'money'"}],staticClass:"input-with-select",attrs:{"type":"text","placeholder":"0.00"},model:{value:(_vm.form.price),callback:function ($$v) {_vm.$set(_vm.form, "price", $$v)},expression:"form.price"}},[_c('el-select',{attrs:{"slot":"append"},slot:"append",model:{value:(_vm.form.currency),callback:function ($$v) {_vm.$set(_vm.form, "currency", $$v)},expression:"form.currency"}},_vm._l((_vm.currencies),function(curr){return _c('el-option',{key:curr,attrs:{"value":curr}})}))],1)],1)],1)],1),_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":24}},[_c('el-form-item',{attrs:{"label":"Номер карты","prop":"cardNumber"}},[_c('el-input',{directives:[{name:"mask",rawName:"v-mask",value:(_vm.masks.card),expression:"masks.card"}],attrs:{"type":"text","prefix-icon":"el-icon-tickets"},model:{value:(_vm.form.cardNumber),callback:function ($$v) {_vm.$set(_vm.form, "cardNumber", $$v)},expression:"form.cardNumber"}})],1)],1)],1),_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":24}},[_c('el-form-item',{attrs:{"label":"Имя владельца","prop":"name"}},[_c('el-input',{attrs:{"type":"text","prefix-icon":"el-icon-view"},model:{value:(_vm.form.name),callback:function ($$v) {_vm.$set(_vm.form, "name", $$v)},expression:"form.name"}})],1)],1)],1),_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":12}},[_c('el-form-item',{attrs:{"label":"Expiration date","prop":"expiration"}},[_c('el-input',{directives:[{name:"mask",rawName:"v-mask",value:(_vm.masks.exp),expression:"masks.exp"}],attrs:{"type":"text","prefix-icon":"el-icon-date","placeholder":"MM / YY"},model:{value:(_vm.form.expiration),callback:function ($$v) {_vm.$set(_vm.form, "expiration", $$v)},expression:"form.expiration"}})],1)],1),_c('el-col',{attrs:{"md":12}},[_c('el-form-item',{attrs:{"label":"CVV","prop":"cvv"}},[_c('el-input',{directives:[{name:"mask",rawName:"v-mask",value:(_vm.masks.cvv),expression:"masks.cvv"}],attrs:{"type":"text","prefix-icon":"el-icon-setting","placeholder":"CVV"},model:{value:(_vm.form.cvv),callback:function ($$v) {_vm.$set(_vm.form, "cvv", $$v)},expression:"form.cvv"}})],1)],1)],1),_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":12}},[_c('el-form-item',[_c('el-button',{attrs:{"type":"primary"},on:{"click":_vm.onSubmit}},[_vm._v("Добавить")])],1)],1)],1)],1)}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
@@ -381,7 +381,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('el-form',{ref:"editForm",staticClass:"demo-form-inline",attrs:{"inline":true,"rules":_vm.rules,"model":_vm.formInline,"size":"mini"}},[_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":2}},[_c('el-form-item',[_c('el-input',{attrs:{"placeholder":"Номер заказа","disabled":true},model:{value:(_vm.formInline.orderNumber),callback:function ($$v) {_vm.$set(_vm.formInline, "orderNumber", $$v)},expression:"formInline.orderNumber"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"price"}},[_c('el-input',{attrs:{"placeholder":"Цена"},model:{value:(_vm.formInline.price),callback:function ($$v) {_vm.$set(_vm.formInline, "price", $$v)},expression:"formInline.price"}})],1)],1),_c('el-col',{attrs:{"md":2}},[_c('el-form-item',{attrs:{"prop":"currency"}},[_c('el-select',{model:{value:(_vm.formInline.currency),callback:function ($$v) {_vm.$set(_vm.formInline, "currency", $$v)},expression:"formInline.currency"}},_vm._l((_vm.availableCurrencies),function(curr){return _c('el-option',{key:curr,attrs:{"value":curr}})}))],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"cardNumber"}},[_c('el-input',{attrs:{"placeholder":"Номер карты"},model:{value:(_vm.formInline.cardNumber),callback:function ($$v) {_vm.$set(_vm.formInline, "cardNumber", $$v)},expression:"formInline.cardNumber"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"name"}},[_c('el-input',{attrs:{"placeholder":"Имя владельца"},model:{value:(_vm.formInline.name),callback:function ($$v) {_vm.$set(_vm.formInline, "name", $$v)},expression:"formInline.name"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"expiration"}},[_c('el-input',{attrs:{"placeholder":"Expires"},model:{value:(_vm.formInline.expiration),callback:function ($$v) {_vm.$set(_vm.formInline, "expiration", $$v)},expression:"formInline.expiration"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"cvv"}},[_c('el-input',{attrs:{"placeholder":"CVV"},model:{value:(_vm.formInline.cvv),callback:function ($$v) {_vm.$set(_vm.formInline, "cvv", $$v)},expression:"formInline.cvv"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',[_c('el-button-group',[_c('el-button',{attrs:{"type":"success","icon":"el-icon-edit"},on:{"click":_vm.editOrder}}),_c('el-popover',{ref:"popover5",attrs:{"placement":"top","width":"160"},model:{value:(_vm.confirmationVisible),callback:function ($$v) {_vm.confirmationVisible=$$v},expression:"confirmationVisible"}},[_c('p',[_vm._v("Точно удалить?")]),_c('div',{staticStyle:{"text-align":"right","margin":"0"}},[_c('el-button',{attrs:{"size":"mini","type":"primary"},on:{"click":function($event){_vm.confirmationVisible = false}}},[_vm._v("отмена")]),_c('el-button',{attrs:{"size":"mini","type":"danger"},on:{"click":_vm.deleteOrder}},[_vm._v("удалить")])],1)]),_c('el-button',{directives:[{name:"popover",rawName:"v-popover:popover5",arg:"popover5"}],attrs:{"type":"danger","icon":"el-icon-delete"}})],1)],1)],1)],1)],1)}
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('el-form',{ref:"editForm",staticClass:"demo-form-inline",attrs:{"inline":true,"rules":_vm.rules,"model":_vm.formInline,"size":"mini"}},[_c('el-row',{attrs:{"gutter":10}},[_c('el-col',{attrs:{"md":2}},[_c('el-form-item',[_c('el-input',{attrs:{"placeholder":"Номер заказа","disabled":true},model:{value:(_vm.formInline.orderNumber),callback:function ($$v) {_vm.$set(_vm.formInline, "orderNumber", $$v)},expression:"formInline.orderNumber"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"price"}},[_c('el-input',{directives:[{name:"mask",rawName:"v-mask",value:('money'),expression:"'money'"}],attrs:{"placeholder":"0.00"},model:{value:(_vm.formInline.price),callback:function ($$v) {_vm.$set(_vm.formInline, "price", $$v)},expression:"formInline.price"}})],1)],1),_c('el-col',{attrs:{"md":2}},[_c('el-form-item',{attrs:{"prop":"currency"}},[_c('el-select',{model:{value:(_vm.formInline.currency),callback:function ($$v) {_vm.$set(_vm.formInline, "currency", $$v)},expression:"formInline.currency"}},_vm._l((_vm.availableCurrencies),function(curr){return _c('el-option',{key:curr,attrs:{"value":curr}})}))],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"cardNumber"}},[_c('el-input',{directives:[{name:"mask",rawName:"v-mask",value:(_vm.masks.card),expression:"masks.card"}],attrs:{"placeholder":"Номер карты"},model:{value:(_vm.formInline.cardNumber),callback:function ($$v) {_vm.$set(_vm.formInline, "cardNumber", $$v)},expression:"formInline.cardNumber"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"name"}},[_c('el-input',{attrs:{"placeholder":"Имя владельца"},model:{value:(_vm.formInline.name),callback:function ($$v) {_vm.$set(_vm.formInline, "name", $$v)},expression:"formInline.name"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"expiration"}},[_c('el-input',{directives:[{name:"mask",rawName:"v-mask",value:(_vm.masks.exp),expression:"masks.exp"}],attrs:{"placeholder":"MM / YY"},model:{value:(_vm.formInline.expiration),callback:function ($$v) {_vm.$set(_vm.formInline, "expiration", $$v)},expression:"formInline.expiration"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',{attrs:{"prop":"cvv"}},[_c('el-input',{directives:[{name:"mask",rawName:"v-mask",value:(_vm.masks.cvv),expression:"masks.cvv"}],attrs:{"placeholder":"CVV"},model:{value:(_vm.formInline.cvv),callback:function ($$v) {_vm.$set(_vm.formInline, "cvv", $$v)},expression:"formInline.cvv"}})],1)],1),_c('el-col',{attrs:{"md":3}},[_c('el-form-item',[_c('el-button-group',[_c('el-button',{attrs:{"type":"success","icon":"el-icon-edit"},on:{"click":_vm.editOrder}}),_c('el-popover',{ref:"popover5",attrs:{"placement":"top","width":"160"},model:{value:(_vm.confirmationVisible),callback:function ($$v) {_vm.confirmationVisible=$$v},expression:"confirmationVisible"}},[_c('p',[_vm._v("Точно удалить?")]),_c('div',{staticStyle:{"text-align":"right","margin":"0"}},[_c('el-button',{attrs:{"size":"mini","type":"primary"},on:{"click":function($event){_vm.confirmationVisible = false}}},[_vm._v("отмена")]),_c('el-button',{attrs:{"size":"mini","type":"danger"},on:{"click":_vm.deleteOrder}},[_vm._v("удалить")])],1)]),_c('el-button',{directives:[{name:"popover",rawName:"v-popover:popover5",arg:"popover5"}],attrs:{"type":"danger","icon":"el-icon-delete"}})],1)],1)],1)],1)],1)}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
@@ -399,7 +399,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (function () {
   return {
     orderNumber: [{ required: true, validator: orderNumber, trigger: 'blur' }],
-    price: [{ required: true, validator: price, trigger: 'change, blur' }],
+    price: [{ required: true, validator: price, trigger: 'blur' }],
     currency: [{ required: true, validator: currency, trigger: 'blur' }],
     cardNumber: [{ required: true, validator: cardNumber, trigger: 'change, blur' }],
     name: [{ required: true, validator: name, trigger: 'blur' }],
@@ -409,28 +409,34 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 });
 
 function orderNumber(rule, value, callback) {
-  if (!__WEBPACK_IMPORTED_MODULE_0__server_validation___default.a.orderNumber(value)) callback(new Error('Ошибка'));else callback();
+  var valuePure = value.toString();
+  if (!__WEBPACK_IMPORTED_MODULE_0__server_validation___default.a.orderNumber(valuePure)) callback(new Error('Ошибка'));else callback();
 }
 
 function price(rule, value, callback) {
-  if (!__WEBPACK_IMPORTED_MODULE_0__server_validation___default.a.price(value)) callback(new Error('Введите цену в формате *.XX'));else callback();
+  var valuePure = value.toString().replace(/\s/g, '');
+  if (!__WEBPACK_IMPORTED_MODULE_0__server_validation___default.a.price(valuePure)) callback(new Error('Введите цену в формате *.XX'));else callback();
 }
 
 function currency(rule, value, callback) {
-  if (!/^\w{3}$/.test(value)) callback(new Error('Выберите валюту из списка'));else callback();
+  var valuePure = value.toString();
+  if (!/^\w{3}$/.test(valuePure)) callback(new Error('Выберите валюту из списка'));else callback();
 }
 
 function cardNumber(rule, value, callback) {
-  if (!__WEBPACK_IMPORTED_MODULE_0__server_validation___default.a.cardNumber(value.trim())) callback(new Error('Введите корректный номер'));else callback();
+  var valuePure = value.toString().replace(/\s/g, '');
+  if (!__WEBPACK_IMPORTED_MODULE_0__server_validation___default.a.cardNumber(valuePure)) callback(new Error('Введите корректный номер'));else callback();
 }
 
 function name(rule, value, callback) {
-  if (!__WEBPACK_IMPORTED_MODULE_0__server_validation___default.a.name(value)) callback(new Error('Имя и фамилия, через пробел'));else callback();
+  var valuePure = value.toString();
+  if (!__WEBPACK_IMPORTED_MODULE_0__server_validation___default.a.name(valuePure)) callback(new Error('Имя и фамилия, через пробел'));else callback();
 }
 
 function expiration(rule, value, callback) {
-  if (!__WEBPACK_IMPORTED_MODULE_0__server_validation___default.a.expirationDateValid(value.trim())) callback(new Error('Формат XX/XX'));
-  if (!__WEBPACK_IMPORTED_MODULE_0__server_validation___default.a.expirationDateActual(value.trim())) callback(new Error('Карта просрочена'));else callback();
+  var valuePure = value.toString().replace(/\s/g, '');
+  if (!__WEBPACK_IMPORTED_MODULE_0__server_validation___default.a.expirationDateValid(valuePure)) callback(new Error('Формат MM / YY'));
+  if (!__WEBPACK_IMPORTED_MODULE_0__server_validation___default.a.expirationDateActual(valuePure)) callback(new Error('Карта просрочена'));else callback();
 }
 
 function cvv(rule, value, callback) {
@@ -512,7 +518,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 __WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_2_vue_async_computed___default.a);
 __WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_1_element_ui___default.a);
-
 __WEBPACK_IMPORTED_MODULE_0_vue__["default"].config.productionTip = false;
 
 /* eslint-disable no-new */
@@ -658,8 +663,11 @@ var Component = normalizeComponent(
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator__ = __webpack_require__("exGp");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__node_modules_element_ui_packages_input_src_input_vue__ = __webpack_require__("dKx3");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_submitForm__ = __webpack_require__("1VaP");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_validators__ = __webpack_require__("JweD");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_awesome_mask__ = __webpack_require__("a+kM");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_awesome_mask___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_awesome_mask__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_submitForm__ = __webpack_require__("1VaP");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__util_validators__ = __webpack_require__("JweD");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__util_inputMasks__ = __webpack_require__("uYll");
 
 
 
@@ -699,10 +707,15 @@ var Component = normalizeComponent(
 
 
 
-var rules = Object(__WEBPACK_IMPORTED_MODULE_5__util_validators__["a" /* default */])();
+
+
+var rules = Object(__WEBPACK_IMPORTED_MODULE_6__util_validators__["a" /* default */])();
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   components: { ElInput: __WEBPACK_IMPORTED_MODULE_3__node_modules_element_ui_packages_input_src_input_vue__["a" /* default */] },
+  directives: {
+    'mask': __WEBPACK_IMPORTED_MODULE_4_awesome_mask___default.a
+  },
   name: 'AddOrder',
   props: {
     currencies: {
@@ -716,14 +729,15 @@ var rules = Object(__WEBPACK_IMPORTED_MODULE_5__util_validators__["a" /* default
     return {
       form: {
         orderNumber: 1,
-        price: '0.00',
+        price: '',
         currency: 'USD',
         cardNumber: '',
         name: '',
         expiration: '',
         cvv: ''
       },
-      rules: rules
+      rules: rules,
+      masks: __WEBPACK_IMPORTED_MODULE_7__util_inputMasks__["a" /* default */]
     };
   },
 
@@ -731,135 +745,119 @@ var rules = Object(__WEBPACK_IMPORTED_MODULE_5__util_validators__["a" /* default
     onSubmit: function onSubmit() {
       var _this = this;
 
-      return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
-        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+      return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+        var valid, response, errors, timeout, _loop, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, err;
+
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context.prev = _context.next) {
               case 0:
-                _this.$refs.addForm.validate(function () {
-                  var _ref = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(valid) {
-                    var response, errors, timeout, _loop, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, err;
+                _context.next = 2;
+                return _this.$refs.addForm.validate();
 
-                    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-                      while (1) {
-                        switch (_context.prev = _context.next) {
-                          case 0:
-                            if (valid) {
-                              _context.next = 2;
-                              break;
-                            }
+              case 2:
+                valid = _context.sent;
 
-                            return _context.abrupt('return', false);
+                if (valid) {
+                  _context.next = 5;
+                  break;
+                }
 
-                          case 2:
-                            _context.next = 4;
-                            return Object(__WEBPACK_IMPORTED_MODULE_4__util_submitForm__["a" /* default */])('POST', _this.form);
+                return _context.abrupt('return', false);
 
-                          case 4:
-                            response = _context.sent;
+              case 5:
+                _context.next = 7;
+                return Object(__WEBPACK_IMPORTED_MODULE_5__util_submitForm__["a" /* default */])('POST', _this.form);
 
-                            if (!response.ok) {
-                              _context.next = 10;
-                              break;
-                            }
+              case 7:
+                response = _context.sent;
 
-                            _this.$notify({
-                              title: 'Добавлен',
-                              message: '\u0417\u0430\u043A\u0430\u0437 ' + _this.form.orderNumber + ' \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D',
-                              type: 'success',
-                              offset: 100,
-                              position: 'bottom-left'
-                            });
-                            _this.resetForm();
-                            _context.next = 34;
-                            break;
+                if (!response.ok) {
+                  _context.next = 13;
+                  break;
+                }
 
-                          case 10:
-                            _context.next = 12;
-                            return response.json();
+                _this.$notify({
+                  title: 'Добавлен',
+                  message: '\u0417\u0430\u043A\u0430\u0437 ' + _this.form.orderNumber + ' \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D',
+                  type: 'success',
+                  offset: 100,
+                  position: 'bottom-left'
+                });
+                _this.$refs.addForm.resetFields();
+                _context.next = 37;
+                break;
 
-                          case 12:
-                            errors = _context.sent;
-                            timeout = 0;
+              case 13:
+                _context.next = 15;
+                return response.json();
 
-                            _loop = function _loop(err) {
-                              setTimeout(function () {
-                                _this.$notify.error({
-                                  title: 'Ошибка',
-                                  message: err,
-                                  offset: 100,
-                                  position: 'bottom-left'
-                                });
-                              }, timeout);
-                              timeout += 200;
-                            };
+              case 15:
+                errors = _context.sent;
+                timeout = 0;
 
-                            _iteratorNormalCompletion = true;
-                            _didIteratorError = false;
-                            _iteratorError = undefined;
-                            _context.prev = 18;
+                _loop = function _loop(err) {
+                  setTimeout(function () {
+                    _this.$notify.error({
+                      title: 'Ошибка',
+                      message: err,
+                      offset: 100,
+                      position: 'bottom-left'
+                    });
+                  }, timeout);
+                  timeout += 200;
+                };
 
-                            for (_iterator = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator___default()(errors); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                              err = _step.value;
+                _iteratorNormalCompletion = true;
+                _didIteratorError = false;
+                _iteratorError = undefined;
+                _context.prev = 21;
 
-                              _loop(err);
-                            }
-                            _context.next = 26;
-                            break;
+                for (_iterator = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator___default()(errors); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                  err = _step.value;
 
-                          case 22:
-                            _context.prev = 22;
-                            _context.t0 = _context['catch'](18);
-                            _didIteratorError = true;
-                            _iteratorError = _context.t0;
+                  _loop(err);
+                }
+                _context.next = 29;
+                break;
 
-                          case 26:
-                            _context.prev = 26;
-                            _context.prev = 27;
+              case 25:
+                _context.prev = 25;
+                _context.t0 = _context['catch'](21);
+                _didIteratorError = true;
+                _iteratorError = _context.t0;
 
-                            if (!_iteratorNormalCompletion && _iterator.return) {
-                              _iterator.return();
-                            }
+              case 29:
+                _context.prev = 29;
+                _context.prev = 30;
 
-                          case 29:
-                            _context.prev = 29;
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                  _iterator.return();
+                }
 
-                            if (!_didIteratorError) {
-                              _context.next = 32;
-                              break;
-                            }
+              case 32:
+                _context.prev = 32;
 
-                            throw _iteratorError;
+                if (!_didIteratorError) {
+                  _context.next = 35;
+                  break;
+                }
 
-                          case 32:
-                            return _context.finish(29);
+                throw _iteratorError;
 
-                          case 33:
-                            return _context.finish(26);
+              case 35:
+                return _context.finish(32);
 
-                          case 34:
-                          case 'end':
-                            return _context.stop();
-                        }
-                      }
-                    }, _callee, _this, [[18, 22, 26, 34], [27,, 29, 33]]);
-                  }));
+              case 36:
+                return _context.finish(29);
 
-                  return function (_x) {
-                    return _ref.apply(this, arguments);
-                  };
-                }());
-
-              case 1:
+              case 37:
               case 'end':
-                return _context2.stop();
+                return _context.stop();
             }
           }
-        }, _callee2, _this);
+        }, _callee, _this, [[21, 25, 29, 37], [30,, 32, 36]]);
       }))();
-    },
-    resetForm: function resetForm() {
-      this.$refs.addForm.resetFields();
     }
   }
 });
@@ -1042,8 +1040,11 @@ var Component = normalizeComponent(
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator__ = __webpack_require__("exGp");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__node_modules_element_ui_packages_form_src_form_item_vue__ = __webpack_require__("95Re");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_submitForm__ = __webpack_require__("1VaP");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_validators__ = __webpack_require__("JweD");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_awesome_mask__ = __webpack_require__("a+kM");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_awesome_mask___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_awesome_mask__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_submitForm__ = __webpack_require__("1VaP");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__util_validators__ = __webpack_require__("JweD");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__util_inputMasks__ = __webpack_require__("uYll");
 
 
 
@@ -1088,10 +1089,15 @@ var Component = normalizeComponent(
 
 
 
-var rules = Object(__WEBPACK_IMPORTED_MODULE_5__util_validators__["a" /* default */])();
+
+
+var rules = Object(__WEBPACK_IMPORTED_MODULE_6__util_validators__["a" /* default */])();
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   components: { ElFormItem: __WEBPACK_IMPORTED_MODULE_3__node_modules_element_ui_packages_form_src_form_item_vue__["a" /* default */] },
+  directives: {
+    'mask': __WEBPACK_IMPORTED_MODULE_4_awesome_mask___default.a
+  },
   props: ['order', 'availableCurrencies'],
   data: function data() {
     return {
@@ -1105,6 +1111,7 @@ var rules = Object(__WEBPACK_IMPORTED_MODULE_5__util_validators__["a" /* default
         cvv: this.order.cvv
       },
       rules: rules,
+      masks: __WEBPACK_IMPORTED_MODULE_7__util_inputMasks__["a" /* default */],
       confirmationVisible: false
     };
   },
@@ -1113,130 +1120,117 @@ var rules = Object(__WEBPACK_IMPORTED_MODULE_5__util_validators__["a" /* default
     editOrder: function editOrder() {
       var _this = this;
 
-      return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
-        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+      return __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+        var valid, response, errors, timeout, _loop, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, err;
+
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context.prev = _context.next) {
               case 0:
-                _this.$refs.editForm.validate(function () {
-                  var _ref = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(valid) {
-                    var response, errors, timeout, _loop, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, err;
+                _context.next = 2;
+                return _this.$refs.editForm.validate();
 
-                    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-                      while (1) {
-                        switch (_context.prev = _context.next) {
-                          case 0:
-                            if (valid) {
-                              _context.next = 2;
-                              break;
-                            }
+              case 2:
+                valid = _context.sent;
 
-                            return _context.abrupt('return', false);
+                if (valid) {
+                  _context.next = 5;
+                  break;
+                }
 
-                          case 2:
-                            _context.next = 4;
-                            return Object(__WEBPACK_IMPORTED_MODULE_4__util_submitForm__["a" /* default */])('PUT', _this.formInline);
+                return _context.abrupt('return', false);
 
-                          case 4:
-                            response = _context.sent;
+              case 5:
+                _context.next = 7;
+                return Object(__WEBPACK_IMPORTED_MODULE_5__util_submitForm__["a" /* default */])('PUT', _this.formInline);
 
-                            if (!response.ok) {
-                              _context.next = 9;
-                              break;
-                            }
+              case 7:
+                response = _context.sent;
 
-                            _this.$notify({
-                              title: 'Изменен',
-                              message: '\u0417\u0430\u043A\u0430\u0437 ' + _this.formInline.orderNumber + ' \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u043E\u0442\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u043D',
-                              type: 'success',
-                              offset: 100,
-                              position: 'bottom-left'
-                            });
-                            _context.next = 33;
-                            break;
+                if (!response.ok) {
+                  _context.next = 12;
+                  break;
+                }
 
-                          case 9:
-                            _context.next = 11;
-                            return response.json();
+                _this.$notify({
+                  title: 'Изменен',
+                  message: '\u0417\u0430\u043A\u0430\u0437 ' + _this.formInline.orderNumber + ' \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u043E\u0442\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u043D',
+                  type: 'success',
+                  offset: 100,
+                  position: 'bottom-left'
+                });
+                _context.next = 36;
+                break;
 
-                          case 11:
-                            errors = _context.sent;
-                            timeout = 0;
+              case 12:
+                _context.next = 14;
+                return response.json();
 
-                            _loop = function _loop(err) {
-                              setTimeout(function () {
-                                _this.$notify.error({
-                                  title: 'Ошибка',
-                                  message: err,
-                                  offset: 100,
-                                  position: 'bottom-left'
-                                });
-                              }, timeout);
-                              timeout += 200;
-                            };
+              case 14:
+                errors = _context.sent;
+                timeout = 0;
 
-                            _iteratorNormalCompletion = true;
-                            _didIteratorError = false;
-                            _iteratorError = undefined;
-                            _context.prev = 17;
+                _loop = function _loop(err) {
+                  setTimeout(function () {
+                    _this.$notify.error({
+                      title: 'Ошибка',
+                      message: err,
+                      offset: 100,
+                      position: 'bottom-left'
+                    });
+                  }, timeout);
+                  timeout += 200;
+                };
 
-                            for (_iterator = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator___default()(errors); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                              err = _step.value;
+                _iteratorNormalCompletion = true;
+                _didIteratorError = false;
+                _iteratorError = undefined;
+                _context.prev = 20;
 
-                              _loop(err);
-                            }
-                            _context.next = 25;
-                            break;
+                for (_iterator = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_get_iterator___default()(errors); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                  err = _step.value;
 
-                          case 21:
-                            _context.prev = 21;
-                            _context.t0 = _context['catch'](17);
-                            _didIteratorError = true;
-                            _iteratorError = _context.t0;
+                  _loop(err);
+                }
+                _context.next = 28;
+                break;
 
-                          case 25:
-                            _context.prev = 25;
-                            _context.prev = 26;
+              case 24:
+                _context.prev = 24;
+                _context.t0 = _context['catch'](20);
+                _didIteratorError = true;
+                _iteratorError = _context.t0;
 
-                            if (!_iteratorNormalCompletion && _iterator.return) {
-                              _iterator.return();
-                            }
+              case 28:
+                _context.prev = 28;
+                _context.prev = 29;
 
-                          case 28:
-                            _context.prev = 28;
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                  _iterator.return();
+                }
 
-                            if (!_didIteratorError) {
-                              _context.next = 31;
-                              break;
-                            }
+              case 31:
+                _context.prev = 31;
 
-                            throw _iteratorError;
+                if (!_didIteratorError) {
+                  _context.next = 34;
+                  break;
+                }
 
-                          case 31:
-                            return _context.finish(28);
+                throw _iteratorError;
 
-                          case 32:
-                            return _context.finish(25);
+              case 34:
+                return _context.finish(31);
 
-                          case 33:
-                          case 'end':
-                            return _context.stop();
-                        }
-                      }
-                    }, _callee, _this, [[17, 21, 25, 33], [26,, 28, 32]]);
-                  }));
+              case 35:
+                return _context.finish(28);
 
-                  return function (_x) {
-                    return _ref.apply(this, arguments);
-                  };
-                }());
-
-              case 1:
+              case 36:
               case 'end':
-                return _context2.stop();
+                return _context.stop();
             }
           }
-        }, _callee2, _this);
+        }, _callee, _this, [[20, 24, 28, 36], [29,, 31, 35]]);
       }))();
     },
     deleteOrder: function deleteOrder() {
@@ -1612,6 +1606,18 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
+
+/***/ }),
+
+/***/ "uYll":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+  card: '9999 9999 9999 9999 999',
+  exp: '99 / 99',
+  cvv: '9999'
+});
 
 /***/ }),
 
@@ -2167,4 +2173,4 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /***/ })
 
 },["NHnr"]);
-//# sourceMappingURL=app.b55be84d2c0cdba23641.js.map
+//# sourceMappingURL=app.ca5b711372706ef447c0.js.map
