@@ -23,17 +23,17 @@ async function updateOrder(req, res) {
     const {orderNumber, price, currency, cardNumber, expiration, cvv, name} = req.body,
         {valid, validationErr} = validator.forUpdate(orderNumber, price, currency, cardNumber, expiration, cvv, name)
     if (!valid) {
-        res.status(404).json(validationErr).end()
+        res.status(400).json(validationErr).end()
         return
     }
     const orderExists = await db.orderExists(orderNumber)
     if (!orderExists) {
-        res.status(404).json([validator.messages.orderNotExists]).end()
+        res.status(400).json([validator.messages.orderNotExists]).end()
         return
     }
     const updateSuccessful = await db.updateOrder(orderNumber, price, currency, cardNumber, expiration, cvv, name)
     if (!updateSuccessful) {
-        res.status(404).json([validator.messages.updateError]).end()
+        res.status(400).json([validator.messages.updateError]).end()
         return
     }
     res.status(200).end()
@@ -43,17 +43,17 @@ async function addOrder(req, res) {
     const {orderNumber, price, currency, cardNumber, expiration, cvv, name} = req.body,
         {valid, validationErr} = validator.forAdd(orderNumber, price, currency, cardNumber, expiration, cvv, name)
     if (!valid) {
-        res.status(404).json(validationErr).end()
+        res.status(400).json(validationErr).end()
         return
     }
     const orderExists = await db.orderExists(orderNumber)
     if (orderExists) {
-        res.status(404).json([validator.messages.orderExists]).end()
+        res.status(400).json([validator.messages.orderExists]).end()
         return
     }
     const addSuccessful = await db.addOrder(orderNumber, price, currency, cardNumber, expiration, cvv, name)
     if (!addSuccessful) {
-        res.status(404).json([validator.messages.addError]).end()
+        res.status(400).json([validator.messages.addError]).end()
         return
     }
     res.status(200).end()
@@ -62,12 +62,12 @@ async function addOrder(req, res) {
 async function deleteOrder(req, res) {
     const {orderNumber} = req.body
     if (!validator.orderNumber(orderNumber)) {
-        res.status(404).json([validator.messages.orderNumberInvalid]).end()
+        res.status(400).json([validator.messages.orderNumberInvalid]).end()
         return
     }
     const deleteSuccessful = await db.deleteOrder(orderNumber)
     if (!deleteSuccessful) {
-        res.status(404).json([validator.messages.deleteError]).end()
+        res.status(400).json([validator.messages.deleteError]).end()
         return
     }
     res.status(200).end()

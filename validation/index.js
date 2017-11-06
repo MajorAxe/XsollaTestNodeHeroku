@@ -1,4 +1,4 @@
-const availableCurrencies = ['USD', 'RUB'],
+const availableCurrencies = ['USD', 'RUB'],     //TODO: Надо бы заменить на параметр
     patterns = require('./patterns'),
     messages = require('./messages')
     
@@ -123,7 +123,8 @@ function forUpdate(orderNumber, price, currency, cardNumber, expiration, cvv, na
     if (expiration && !this.expirationDateValid(expiration)) {
         validationErr.push(messages.expirationDateInvalid)
         valid = false
-    } else if (expiration && !this.expirationDateActual(expiration)) {
+    }
+    if (expiration && !this.expirationDateActual(expiration)) {
         validationErr.push(messages.expirationDateExpired)
         valid = false
     }
@@ -166,7 +167,8 @@ function forAdd(orderNumber, price, currency, cardNumber, expiration, cvv, name)
     if (!this.expirationDateValid(expiration)) {
         validationErr.push(messages.expirationDateInvalid)
         valid = false
-    } else if (!this.expirationDateActual(expiration)) {
+    }
+    if (!this.expirationDateActual(expiration)) {
         validationErr.push(messages.expirationDateExpired)
         valid = false
     }

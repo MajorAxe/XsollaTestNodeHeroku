@@ -16,16 +16,22 @@ app.use(history())
 app.use(express.static('public'))
 
 app.route('/currencies')
-    .get(routes.getCurrencies)
+  .get(routes.getCurrencies)
+  .all((req, res) => {
+    res.status(405).end()
+  })
 
 app.route('/order')
-    .get(routes.getOrders)
-    .put(routes.updateOrder)
-    .post(routes.addOrder)
-    .delete(routes.deleteOrder)
+  .get(routes.getOrders)
+  .put(routes.updateOrder)
+  .post(routes.addOrder)
+  .delete(routes.deleteOrder)
+  .all((req, res) => {
+    res.status(405).end()
+  })
 
 app.listen(apiport, () => {
-    console.log(`API server listening on port ${apiport}`)
+  console.log(`API server listening on port ${apiport}`)
 })
 
 module.exports = app //Для тестов
